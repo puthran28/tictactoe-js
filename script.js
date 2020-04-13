@@ -29,6 +29,7 @@ function startGame() {
     cell.removeEventListener('click', handleClick)
     cell.addEventListener('click', handleClick, { once: true })
   })
+  
   setBoardHoverClass()
   winningMessageElement.classList.remove('show')
 }
@@ -63,6 +64,7 @@ function isDraw() {
 }
 
 function placeMark(cell, currentClass) {
+  setMessage("X get's to Start")
   cell.classList.add(currentClass)
 }
 
