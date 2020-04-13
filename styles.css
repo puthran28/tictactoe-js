@@ -16,13 +16,16 @@ h1{
 }
 
 #message{
+  padding-top: 50px;
   font-family: Arial, Helvetica, sans-serif;
+  font-size: 5rem;
 }
 
 .board {
   width: 100vw;
   height: 100vh;
   display: grid;
+  margin-top: 100px;
   justify-content: center;
   align-content: start;
   align-items: center;
@@ -101,7 +104,7 @@ h1{
   background-color:aqua; 
 }
 
-.winning-message {
+.winning-message{
   display: none;
   position: fixed;
   top: 0;
@@ -114,6 +117,32 @@ h1{
   color: white;
   font-size: 5rem;
   flex-direction: column;
+}
+
+.wrapper{
+
+  background-color: rgba(0, 0, 0, .9);
+  font-size: 5rem;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  justify-content: center;
+  align-content: start;
+  align-items: center;
+  color: aliceblue;
+}
+
+.wrapper2{
+  background-color: black;
+  color: aliceblue;
+}
+
+.container{
+  margin-top: 50%;
+}
+
+#start{
+  font-weight: bold;
 }
 
 .winning-message button {
@@ -130,6 +159,6 @@ h1{
   border-color: white;
 }
 
-.winning-message.show {
+.winning-message.show{
   display: flex;
 }
