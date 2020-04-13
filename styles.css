@@ -11,6 +11,15 @@ body {
   margin: 0;
 }
 
+
+h1{
+  text-align: center;
+}
+
+#message{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .board {
   width: 100vw;
   height: 100vh;
