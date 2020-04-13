@@ -75,9 +75,15 @@ function setBoardHoverClass() {
   board.classList.remove(CIRCLE_CLASS)
   if (circleTurn) {
     board.classList.add(CIRCLE_CLASS)
+    setMessage("Circle's turn")
   } else {
     board.classList.add(X_CLASS)
+    setMessage("X's turn")
   }
+}
+
+function setMessage(msg){
+  document.getElementById("message").innerText = msg;
 }
 
 function checkWin(currentClass) {
