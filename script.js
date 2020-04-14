@@ -1,5 +1,10 @@
 const X_CLASS = 'x'
 const CIRCLE_CLASS = 'circle'
+var timer;
+var button;
+var timeLeft;
+var label;
+
 const WINNING_COMBINATIONS = [
   [0, 1, 2],
   [3, 4, 5],
@@ -12,6 +17,7 @@ const WINNING_COMBINATIONS = [
 ]
 const cellElements = document.querySelectorAll('[data-cell]')
 const board = document.getElementById('board')
+label = document.getElementById('label')
 const winningMessageElement = document.getElementById('winningMessage')
 const restartButton = document.getElementById('restartButton')
 const winningMessageTextElement = document.querySelector('[data-winning-message-text]')
@@ -19,7 +25,7 @@ let circleTurn
 
 startGame()
 
-restartButton.addEventListener('click', startGame)
+restartButton.addEventListener('click', startGame, takeMove)
 
 function startGame() {
   circleTurn = false
@@ -28,23 +34,56 @@ function startGame() {
     cell.classList.remove(CIRCLE_CLASS)
     cell.removeEventListener('click', handleClick)
     cell.addEventListener('click', handleClick, { once: true })
+    cell.addEventListener("click", takeMove);
   })
   
   setBoardHoverClass()
   winningMessageElement.classList.remove('show')
 }
 
+
+
+function countdown() {
+  if (timeLeft) {
+    label.innerHTML = timeLeft;
+    timeLeft--;
+    timer = setTimeout(countdown, 1000);
+  } else {
+    label.innerHTML = "Fail";
+    timer = undefined;
+    swapTurns()
+    setBoardHoverClass()
+    takeMove()
+  }
+}
+
+function takeMove() {
+  if (typeof(timer) === "undefined") {
+    label.innerHTML = "Move";
+    timeLeft = 10;
+    countdown();
+  } else {
+    clearTimeout(timer);
+    timeLeft = 10;
+    countdown();
+  }
+}
+
+
 function handleClick(e) {
   const cell = e.target
   const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS
   placeMark(cell, currentClass)
+  
   if (checkWin(currentClass)) {
     endGame(false)
   } else if (isDraw()) {
     endGame(true)
   } else {
+    
     swapTurns()
     setBoardHoverClass()
+    takeMove()
   }
 }
 
@@ -66,11 +105,17 @@ function isDraw() {
 function placeMark(cell, currentClass) {
   setMessage("X get's to Start")
   cell.classList.add(currentClass)
+  
+  
 }
 
 function swapTurns() {
   circleTurn = !circleTurn
+  
+ 
+
 }
+
 
 function setBoardHoverClass() {
   board.classList.remove(X_CLASS)
@@ -95,3 +140,4 @@ function checkWin(currentClass) {
     })
   })
 }
+
