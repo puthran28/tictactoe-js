@@ -24,6 +24,7 @@ const winningMessageTextElement = document.querySelector('[data-winning-message-
 let circleTurn
 
 startGame()
+takeMove()
 
 restartButton.addEventListener('click', startGame, takeMove)
 
